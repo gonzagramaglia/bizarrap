@@ -198,7 +198,7 @@ export default function VideoPlayerModal({
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-6xl"
+        className="relative w-full max-w-[1400px]"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -221,7 +221,7 @@ export default function VideoPlayerModal({
         >
           <ChevronRight className="w-6 h-6" />
         </button>
-        <div className="relative w-full max-w-6xl bg-white dark:bg-zinc-950 rounded-2xl overflow-hidden shadow-2xl animate-in zoom-in-95 duration-200 h-[92vh] md:h-[80vh] flex flex-col md:flex-row">
+        <div className="relative w-full max-w-[1400px] bg-white dark:bg-zinc-950 rounded-2xl overflow-hidden shadow-2xl animate-in zoom-in-95 duration-200 h-[92vh] md:h-[80vh] flex flex-col md:flex-row">
           {/* Video Section (Left/Top) */}
           <div className="relative bg-black h-[34vh] sm:h-[36vh] md:h-auto md:min-h-0 md:flex-1 shrink-0">
             <iframe
@@ -238,7 +238,7 @@ export default function VideoPlayerModal({
           </div>
 
           {/* Lyrics Section (Right) */}
-          <div className="w-full md:w-[380px] lg:w-[450px] flex flex-col flex-1 min-h-0 md:flex-none bg-white dark:bg-zinc-950 border-t md:border-t-0 md:border-l border-neutral-100 dark:border-zinc-800 shrink-0 relative">
+          <div className="w-full md:w-[400px] lg:w-[500px] flex flex-col flex-1 min-h-0 md:flex-none bg-white dark:bg-zinc-950 border-t md:border-t-0 md:border-l border-neutral-100 dark:border-zinc-800 shrink-0 relative">
             <button
               onClick={onClose}
               className="absolute top-4 right-4 z-20 p-2 rounded-full text-neutral-900 dark:text-neutral-50 transition-all duration-100 ease-out cursor-pointer bg-transparent hover:bg-[#48D1CC]/20 hover:text-[#48D1CC] dark:hover:bg-[#48D1CC]/20 dark:hover:text-[#48D1CC] hover:shadow-md active:scale-90"

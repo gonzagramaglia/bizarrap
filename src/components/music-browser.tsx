@@ -1,9 +1,10 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useVideos, Video } from "../contexts/video-context";
 import { useLanguage } from "../contexts/language-context";
 import VideoPlayerModal from "./VideoPlayerModal";
 import { Search, SearchX, Play, ArrowLeftRight } from "lucide-react";
 import { useTheme } from "../contexts/theme-context";
+import { useParams, useNavigate } from "react-router-dom";
 
 function VideoItem({ children }: { children: React.ReactNode }) {
   return (
@@ -17,13 +18,45 @@ export function MusicBrowser() {
   const { theme } = useTheme();
   const { videos } = useVideos();
   const { t, language } = useLanguage();
+  const { sessionId } = useParams();
+  const navigate = useNavigate();
+
   const playlistUrl =
     "https://www.youtube.com/playlist?list=PLLswL1pDm9IxcKcBy5MbMFljNnQs2WVx8";
 
   const [search, setSearch] = useState("");
   const [activeTag, setActiveTag] = useState<string | null>(null);
-  const [playingVideo, setPlayingVideo] = useState<Video | null>(null);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+
+  // Derive playingVideo purely from URL
+  const playingVideo = useMemo(() => {
+    if (!sessionId || videos.length === 0) return null;
+    const numericId = parseInt(sessionId, 10);
+    if (isNaN(numericId)) return null;
+    return videos.find((v) => v.id === `bzrp-${numericId}`) || null;
+  }, [sessionId, videos]);
+
+  // URL Normalization: Redirect /0 to /00, /1 to /01, etc.
+  useEffect(() => {
+    if (!sessionId) return;
+    if (/^\d$/.test(sessionId)) {
+      const paddedId = sessionId.padStart(2, "0");
+      navigate(`/${paddedId}`, { replace: true });
+    }
+  }, [sessionId, navigate]);
+
+
+  // Error Handling: Redirect to / if the sessionId matches nothing
+  useEffect(() => {
+    if (sessionId && videos.length > 0 && !playingVideo) {
+      // Check if it's a numeric ID that simply doesn't exist
+      const numericId = parseInt(sessionId, 10);
+      if (!isNaN(numericId)) {
+        navigate("/", { replace: true });
+        setSearch("");
+      }
+    }
+  }, [sessionId, videos, playingVideo, navigate]);
 
   const notLoadedSessionIds = new Set([
     "bzrp-42",
@@ -54,9 +87,9 @@ export function MusicBrowser() {
   const prevNavigableVideo =
     currentNavigableIndex >= 0 && navigableVideos.length > 1
       ? navigableVideos[
-          (currentNavigableIndex - 1 + navigableVideos.length) %
-            navigableVideos.length
-        ]
+      (currentNavigableIndex - 1 + navigableVideos.length) %
+      navigableVideos.length
+      ]
       : null;
   const nextNavigableVideo =
     currentNavigableIndex >= 0 && navigableVideos.length > 1
@@ -129,7 +162,9 @@ export function MusicBrowser() {
         onClick={(e) => {
           e.stopPropagation();
           localStorage.setItem("last-global-search", searchTerm.trim());
-          setPlayingVideo(video);
+          let id = video.id.replace("bzrp-", "");
+          if (id.length === 1) id = `0${id}`;
+          navigate(`/${id}`);
         }}
       >
         {parts.map((part, i) =>
@@ -272,7 +307,11 @@ export function MusicBrowser() {
                 <div className="aspect-video bg-gray-100 dark:bg-zinc-800/75 relative group-hover:scale-105 transition-transform duration-500">
                   {video.url ? (
                     <div
-                      onClick={() => setPlayingVideo(video)}
+                      onClick={() => {
+                        let id = video.id.replace("bzrp-", "");
+                        if (id.length === 1) id = `0${id}`;
+                        navigate(`/${id}`);
+                      }}
                       className="block w-full h-full relative cursor-pointer"
                     >
                       <img
@@ -304,15 +343,9 @@ export function MusicBrowser() {
                     title={localizedVideoName}
                     onClick={() => {
                       if (video.url) {
-                        if (search.trim()) {
-                          localStorage.setItem(
-                            "last-global-search",
-                            search.trim(),
-                          );
-                        } else {
-                          localStorage.removeItem("last-global-search");
-                        }
-                        setPlayingVideo(video);
+                        let id = video.id.replace("bzrp-", "");
+                        if (id.length === 1) id = `0${id}`;
+                        navigate(`/${id}`);
                       }
                     }}
                   >
@@ -435,15 +468,25 @@ export function MusicBrowser() {
       {playingVideo && (
         <VideoPlayerModal
           video={playingVideo}
-          onClose={() => setPlayingVideo(null)}
+          onClose={() => {
+            navigate("/", { replace: true });
+          }}
           onPrev={
             prevNavigableVideo
-              ? () => setPlayingVideo(prevNavigableVideo)
+              ? () => {
+                let id = prevNavigableVideo.id.replace("bzrp-", "");
+                if (id.length === 1) id = `0${id}`;
+                navigate(`/${id}`);
+              }
               : undefined
           }
           onNext={
             nextNavigableVideo
-              ? () => setPlayingVideo(nextNavigableVideo)
+              ? () => {
+                let id = nextNavigableVideo.id.replace("bzrp-", "");
+                if (id.length === 1) id = `0${id}`;
+                navigate(`/${id}`);
+              }
               : undefined
           }
           hasPrev={Boolean(prevNavigableVideo)}

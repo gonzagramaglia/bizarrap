@@ -31,6 +31,15 @@ function AppContent() {
               </main>
             }
           />
+          <Route
+            path="/:sessionId"
+            element={
+              <main className="flex-auto min-w-0 mt-6 flex flex-col px-8 lg:px-0">
+                <Home />
+                <FloatingLinks />
+              </main>
+            }
+          />
         </Routes>
         <footer className="pb-8 text-center text-sm text-neutral-500 dark:text-neutral-400">
           <a
