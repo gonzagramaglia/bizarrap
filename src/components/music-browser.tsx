@@ -319,13 +319,27 @@ export function MusicBrowser() {
                     {localizedVideoName}
                   </h3>
                   {search.trim() && getLyricSnippet(video, search)}
-                  {/* Tags removed for now */}
                 </div>
               </VideoItem>
             </div>
           );
         })}
       </div>
+
+      {/* Featured Video */}
+      <div className="w-full aspect-video rounded-3xl overflow-hidden shadow-2xl border border-gray-100 dark:border-zinc-800/50 mb-20 animate-bzrp-appear" style={{ animationDelay: '800ms' }}>
+        <iframe
+          width="100%"
+          height="100%"
+          src="https://www.youtube.com/embed/o7T6flU8xUY"
+          title="Bizarrap Music Sessions"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          className="w-full h-full border-none"
+        ></iframe>
+      </div>
+
 
       {playingVideo && (
         <VideoPlayerModal
