@@ -326,18 +326,109 @@ export function MusicBrowser() {
         })}
       </div>
 
-      {/* Featured Video */}
-      <div className="w-full aspect-video rounded-3xl overflow-hidden shadow-2xl border border-gray-100 dark:border-zinc-800/50 mb-20 animate-bzrp-appear" style={{ animationDelay: '800ms' }}>
-        <iframe
-          width="100%"
-          height="100%"
-          src="https://www.youtube.com/embed/o7T6flU8xUY"
-          title="Bizarrap Music Sessions"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          className="w-full h-full border-none"
-        ></iframe>
+      {/* Featured Content Masonry Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 animate-bzrp-appear" style={{ animationDelay: '800ms' }}>
+        {/* Left Column: Videos (2/3 width on desktop) */}
+        <div className="md:col-span-2 flex flex-col gap-10">
+          {/* Video 1 */}
+          <div className="flex flex-col gap-4">
+            <div className="aspect-video rounded-3xl overflow-hidden shadow-2xl border border-gray-100 dark:border-zinc-800/50">
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/o7T6flU8xUY"
+                title="Bizarrap Music Sessions"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full border-none"
+              ></iframe>
+            </div>
+            <a
+              href="https://youtu.be/o7T6flU8xUY"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:block text-center text-neutral-500 dark:text-neutral-400 hover:text-[#FACD00] transition-colors font-medium underline underline-offset-4 decoration-neutral-300 dark:decoration-neutral-700 hover:decoration-[#FACD00]/40 py-1"
+            >
+              youtu.be/o7T6flU8xUY
+            </a>
+          </div>
+
+          {/* Video 2 */}
+          <div className="flex flex-col gap-4">
+            <div className="aspect-video rounded-3xl overflow-hidden shadow-2xl border border-gray-100 dark:border-zinc-800/50">
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/0psLTNmJM38"
+                title="Bizarrap Music Sessions"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full border-none"
+              ></iframe>
+            </div>
+            <a
+              href="https://youtu.be/0psLTNmJM38"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:block text-center text-neutral-500 dark:text-neutral-400 hover:text-[#FACD00] transition-colors font-medium underline underline-offset-4 decoration-neutral-300 dark:decoration-neutral-700 hover:decoration-[#FACD00]/40 py-1"
+            >
+              youtu.be/0psLTNmJM38
+            </a>
+          </div>
+        </div>
+
+        {/* Right Column: Images (1/3 width on desktop, hidden on mobile) */}
+        <div className="hidden md:flex flex-col gap-10">
+          {/* Image 1: Bizarrap Wiki */}
+          <div className="flex flex-col gap-4 flex-1">
+            <a
+              href="https://wikipedia.org/wiki/Bizarrap"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 rounded-3xl overflow-hidden shadow-2xl border border-gray-100 dark:border-zinc-800/50 group"
+            >
+              <img
+                src={theme === "dark" ? "/bzrp-black.png" : "/bzrp-white.png"}
+                alt="Bizarrap"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+            </a>
+            <a
+              href="https://wikipedia.org/wiki/Bizarrap"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-center text-neutral-500 dark:text-neutral-400 hover:text-[#48D1CC] transition-colors font-medium underline underline-offset-4 decoration-neutral-300 dark:decoration-neutral-700 hover:decoration-[#48D1CC]/40 block py-1"
+            >
+              wikipedia.org/wiki/Bizarrap
+            </a>
+          </div>
+
+          {/* Image 2: Flexin */}
+          <div className="flex flex-col gap-4 flex-1">
+            <a
+              href="https://youtu.be/YWdcQfjdzBc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 rounded-3xl overflow-hidden shadow-2xl border border-gray-100 dark:border-zinc-800/50 group"
+            >
+              <img
+                src="/flexin.jpg"
+                alt="Bizarrap Flexin"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+            </a>
+            <a
+              href="https://youtu.be/YWdcQfjdzBc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-center text-neutral-500 dark:text-neutral-400 hover:text-[#FACD00] transition-colors font-medium underline underline-offset-4 decoration-neutral-300 dark:decoration-neutral-700 hover:decoration-[#FACD00]/40 block py-1"
+            >
+              youtu.be/YWdcQfjdzBc
+            </a>
+          </div>
+        </div>
       </div>
 
 
