@@ -196,7 +196,7 @@ export function MusicBrowser() {
       <div className="flex flex-col md:flex-row items-center justify-center pt-0 pb-0 md:pt-0 md:pb-0 gap-0 md:gap-1 max-w-4xl mx-auto">
         <img
           src="/goalritmo.png"
-          alt="66oalritmo Logo"
+          alt="Bizarrap Music Sessions Logo"
           onClick={() => window.open("https://youtu.be/xrDZpAq2w7g", "_blank")}
           className="cursor-pointer h-64 md:h-80 w-auto object-contain hover:scale-110 hover:brightness-110 transition-all duration-500 -mt-8 -mb-4 md:mt-0 md:mb-0"
           style={{
