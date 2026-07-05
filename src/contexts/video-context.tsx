@@ -22,7 +22,7 @@ interface VideoContextType {
 
 const VideoContext = createContext<VideoContextType | undefined>(undefined);
 
-const STORAGE_KEY = "bzrp_sessions_v7";
+const STORAGE_KEY = "bzrp_sessions_v8";
 
 const getEmbedUrl = (url: string): string | undefined => {
   try {
@@ -176,7 +176,7 @@ Bizarrap || Bizarrap`;
       createSession(39, "Snow Tha Product", "t490zXLrQDE"),
       createSession(40, "Eladio Carrión", "s5cYXknsDbY"),
       createSession(41, "Nicky Jam", "BH6T3CTuncc"),
-      createSession(42, "?", ""),
+      createSession(42, "MYKE TOWERS", "ic2A-IAGMcE"),
       createSession(43, "Chucky73", "r63YPAW2G9M"),
       createSession(44, "MHD", "of_3rje8oKA"),
       createSession(45, "PTAZETA", "yLX87IkvT8I"),

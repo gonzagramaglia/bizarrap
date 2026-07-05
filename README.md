@@ -47,11 +47,9 @@ This is a private project created for portfolio and exhibition purposes. All rig
 
 ### 📜 Footer
 
-© 2026 | **Averiguá bien 👀**
+© 2026 | **Averiguá bien 👣**
 
 ---
 
-<div align="center">
-  <p>Made with 💛 by <a href="https://github.com/gonzalogramagia">Gonza</a></p>
-</div>
+Made with 💛 by [Gonza](https://github.com/gonzagramaglia)
 
